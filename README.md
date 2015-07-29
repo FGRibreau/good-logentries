@@ -6,34 +6,24 @@
 
 ```javascript
 
-var hapi = new Hapi.Server('127.0.0.1', 8080);
-
-hapi.pack.register({
-  plugin : require('good'),
+hapi.register({
+  register : require('good'),
   options : {
     reporters : [
-      {
-        reporter : require('good-logentries'),
-        args : [
-          {
-            log     : '*',
-            request : '*',
-            error   : '*',
-            ops     : '*'
-          },
-          {
-            // Any option you can pass to node-logentries.logger (except levels)
-            token  : 'YOUR LOG TOKEN',
-            secure : true
-          }
-        ]
-      }
-    ]
-  }
+      new GoodLogentries({
+        log : '*',
+        request : '*',
+        error : '*',
+        response : '*',
+        ops : '*',
+      }, {
+        token : 'YOUR LOG TOKEN',
+      }),
+    ],
+  },
 }, function(err) {
   if (err) {
-    console.log(err);
-    return;
+    throw err;
   }
 });
 
