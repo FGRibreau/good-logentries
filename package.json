@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/colonyamerican/good-logentries",
   "dependencies": {
+    "good-squeeze": "^2.1.0",
     "le_node": "^1.0.11",
     "lodash": "^3.10.0"
   },
