@@ -1,87 +1,41 @@
 'use strict';
 
-var GoodReporter = require('good-reporter');
-var util         = require('util');
-var logentries   = require('node-logentries');
+var _ = require('lodash');
+var utils = require('good/lib/utils');
+var Logentries = require('le_node');
 
-function getLogLevelFromTags(tags) {
-  var levels = [ 'emerg', 'alert', 'crit', 'error', 'warn', 'notice', 'info', 'debug' ];
+/**
+ * Constructor
+ *
+ * @param {object} events  List of events to log https://github.com/hapijs/good
+ * @param {object} config  Anything you can pass to the `le_node` constructor
+ */
+function GoodLogentries(events, config) {
+  if (! (this instanceof GoodLogentries)) {
+    return new GoodLogentries(events, config);
+  }
 
-  for (var i = 0; i < levels.length; i++) {
-    if (tags.indexOf(levels[i]) != -1) {
-      return levels[i];
+  this.logentries = new Logentries(config);
+}
+
+GoodLogentries.prototype.init = function(readstream, emitter, callback) {
+  readstream.on('data', function(item) {
+    if (item instanceof utils.GreatResponse) {
+      // For best use with logentries, you probably want to enable the `request`
+      // log event instead of using this, as it is very difficult to query.
+      item = _.omit(item, 'log');
     }
-  }
 
-  return 'info';
-}
+    console.log(item);
+    this.logentries.log(item);
+  }.bind(this));
 
-function GoodLogEntries(events, options) {
-  GoodReporter.call(this, events);
-
-  if (typeof options === 'string' || options instanceof String) {
-    options = { token : options };
-  }
-
-  options.levels = {
-    debug  : 0,
-    info   : 1,
-    notice : 2,
-    warn   : 3,
-    error  : 4,
-    crit   : 5,
-    alert  : 6,
-    emerg  : 7
-  };
-
-  this.config = options;
-}
-
-util.inherits(GoodLogEntries, GoodReporter);
-
-GoodLogEntries.prototype.start = function(emitter, callback) {
-  emitter.on('report', this._handleEvent.bind(this));
-
-  this.logentries = logentries.logger(this.config);
+  emitter.on('stop', function() {
+    console.log('stop!');
+    this.logentries.end();
+  }.bind(this));
 
   callback();
 };
 
-GoodLogEntries.prototype.stop = function() {
-  this.logentries.end();
-};
-
-GoodLogEntries.prototype._report = function(event, eventData) {
-  var level;
-  if (event === 'ops') {
-    level = 'debug';
-  } else if (event === 'error') {
-    level = 'error';
-
-    if (eventData.request) {
-      delete eventData.request;
-    }
-
-  } else if (event === 'log') {
-
-    if (Array.isArray(eventData.tags)) {
-      level = getLogLevelFromTags(eventData.tags);
-
-    } else {
-      level = 'info';
-    }
-
-  } else if (event === 'response') {
-    if (eventData.statusCode >= 500) {
-      level = 'error';
-    } else if (eventData.statusCode >= 400) {
-      level = 'warn';
-    } else {
-      level = 'info';
-    }
-  }
-
-  this.logentries.log(level, eventData);
-};
-
-module.exports = GoodLogEntries;
+module.exports = GoodLogentries;
