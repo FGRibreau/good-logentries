@@ -26,12 +26,10 @@ GoodLogentries.prototype.init = function(readstream, emitter, callback) {
       item = _.omit(item, 'log');
     }
 
-    console.log(item);
     this.logentries.log(item);
   }.bind(this));
 
   emitter.on('stop', function() {
-    console.log('stop!');
     this.logentries.end();
   }.bind(this));
 
