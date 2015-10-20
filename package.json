@@ -1,6 +1,6 @@
 {
   "name": "good-logentries-fg",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Good reporter for Logentries",
   "main": "index.js",
   "scripts": {
