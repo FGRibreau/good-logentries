@@ -1,6 +1,7 @@
 ## Change Log
 
-### upcoming (2015/10/20 19:09 +00:00)
+### upcoming (2015/10/20 19:11 +00:00)
+- [aac8c3c](https://github.com/FGRibreau/good-logentries/commit/aac8c3c9dad8068a2a9847802038c71449c300c8) feat(flat): flatten object & added changelog (@FGRibreau)
 - [bfc2ad3](https://github.com/FGRibreau/good-logentries/commit/bfc2ad39fdb7e8214d53cd0c864a9f6eee61579a) docs(readme) (@FGRibreau)
 
 ### v2.0.2 (2015/07/29 19:54 +00:00)
