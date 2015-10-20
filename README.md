@@ -1,6 +1,14 @@
-## good-logentries
+## good-logentries **(fork)**
 
 [Good](https://github.com/hapijs/good) Reporter for [LogEntries](https://logentries.com)
+
+### This fork includes:
+
+- flat nested objects
+
+### Todo
+
+- Support for good v6
 
 ### Example
 
