@@ -1,6 +1,6 @@
 {
   "name": "good-logentries",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "description": "Good reporter for Logentries",
   "main": "index.js",
   "scripts": {
