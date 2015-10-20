@@ -4,11 +4,8 @@
 
 ### This fork includes:
 
-- flat nested objects
-
-### Todo
-
-- Support for good v6
+- flat nested objects to better be consumed inside LogEntries
+- [changelog](/CHANGELOG.md)
 
 ### Example
 

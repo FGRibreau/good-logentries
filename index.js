@@ -1,5 +1,6 @@
 'use strict';
 
+var flat = require('flat');
 var _ = require('lodash');
 var utils = require('good/lib/utils');
 var Squeeze = require('good-squeeze').Squeeze;
@@ -30,7 +31,7 @@ GoodLogentries.prototype.init = function(readstream, emitter, callback) {
       item = _.omit(item, 'log');
     }
 
-    this.logentries.log(item);
+    this.logentries.log(flat(item));
   }.bind(this));
 
   emitter.on('stop', function() {
