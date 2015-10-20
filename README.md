@@ -16,7 +16,7 @@ npm i good-logentries-fg -s
 ### Example
 
 ```javascript
-
+var GoodLogentries = require('good-logentries-fg');
 hapi.register({
   register : require('good'),
   options : {
