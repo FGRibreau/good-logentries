@@ -9,19 +9,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/colonyamerican/good-logentries"
+    "url": "https://github.com/FGRibreau/good-logentries-fg"
   },
   "keywords": [
     "good",
     "hapi",
     "logentries"
   ],
-  "author": "Colony American Homes",
+  "author": "Colony American Homes, FGRibreau",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/colonyamerican/good-logentries/issues"
+    "url": "https://github.com/FGRibreau/good-logentries-fg/issues"
   },
-  "homepage": "https://github.com/colonyamerican/good-logentries",
+  "homepage": "https://github.com/FGRibreau/good-logentries-fg",
   "dependencies": {
     "flat": "^1.6.0",
     "good-squeeze": "^2.1.0",
