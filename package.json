@@ -24,14 +24,14 @@
   "homepage": "https://github.com/FGRibreau/good-logentries-fg",
   "dependencies": {
     "flat": "^1.6.0",
-    "good-squeeze": "^2.1.0",
-    "le_node": "^1.0.11",
-    "lodash": "^3.10.0"
+    "le_node": "^1.0.11"
   },
   "peerDependencies": {
-    "good": "^6.0.0"
+    "good": "^7.0.0"
   },
   "devDependencies": {
-    "github-changes": "^1.0.0"
+    "github-changes": "^1.0.0",
+    "good": "^7.1.0",
+    "hapi": "^16.1.0"
   }
 }
